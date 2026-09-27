@@ -3,7 +3,10 @@
 **Ichigo** va **Aizen** orasidagi 2D fight o'yin — Mortal Kombat uslubidagi
 mexanikalar, Next.js + HTML5 Canvas, va to'liq **kod bilan chizilgan** grafika.
 
-![Ichigo va Aizen](https://img.shields.io/badge/grafika-100%25-kod%20bilan%20chizilgan-F2802A)
+| | | |
+|---|---|---|
+| ![Zarba](docs/screenshot-1-attack.png) | ![Bankai](docs/screenshot-2-bankai.png) | ![Havoda](docs/screenshot-3-air.png) |
+| Yengil zarba + blok | **Tensa Zangetsu** (Bankai) | Havo aylanmasi |
 
 ---
 
@@ -103,6 +106,12 @@ tools/gen_stage.py    arena fonlari (parallax qatlamlari)
 
 Jami: **2 ta belgi × 24 animatsiya × ~128 kadr = 256 kadr**, 1.7 MB.
 
+### Ichigo animatsiyalari (24 ta, top-to-bottom)
+![Ichigo animatsiyalari](docs/anim-ichigo.png)
+
+### Arena
+![Arena](docs/screenshot-4-stage.png)
+
 ### Dvigatel
 - **Fixed timestep 60 Hz** — barcha o'yinchi bir kadrga mos keladi
 - **Kapsula-kapsula to'qnashuvi** (og'irlik) va kapsula-to'qnashuv (zarba)
@@ -167,7 +176,7 @@ npm run check:render # brauzersiz render tekshiruvi -> preview/
 
 `npm test` quyidagilarni tekshiradi: NaN/Infinity yo'qligi, zarba yetib
 borishi, bloklash, projectile, Bankai, AI qarorlari, pushbox, raund/KO
-mantiqi.
+mantiqi — hamda brauzersiz **render sikli** (soxta canvas bilan 600 kadr).
 
 ---
 

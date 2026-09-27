@@ -9,7 +9,7 @@
     "lint": "eslint",
     "sprites": "python tools/gen_sprites.py",
     "stage": "python tools/gen_stage.py",
-    "test": "node --experimental-strip-types --import ./tools/ts-register.mjs tools/simtest.ts",
+    "test": "node --experimental-strip-types --import ./tools/ts-register.mjs tools/simtest.ts && node --experimental-strip-types --import ./tools/ts-register.mjs tools/rendertest.ts",
     "check:render": "python tools/composite_check.py"
   },
   "dependencies": {

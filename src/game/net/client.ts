@@ -30,11 +30,13 @@ export class NetClient {
   ping = 0;
   /** so'nggi xatolik (UI uchun) */
   lastError = "";
+  private onStatus: NetStatusHandler;
+  private onMessage: NetHandler;
 
-  constructor(
-    private onStatus: NetStatusHandler,
-    private onMessage: NetHandler,
-  ) {}
+  constructor(onStatus: NetStatusHandler, onMessage: NetHandler) {
+    this.onStatus = onStatus;
+    this.onMessage = onMessage;
+  }
 
   /** Server manzili. Berilmasa `NEXT_PUBLIC_WS_URL`, so'ng `ws://<host>:8787`. */
   static defaultUrl(): string {
