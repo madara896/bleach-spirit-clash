@@ -1,0 +1,44 @@
+# Bleach Fight — WebSocket relay server (Render Blueprint)
+#
+# One-click deploy:
+#   1. Push this repository to GitHub/GitLab.
+#   2. Open:  https://render.com/deploy?repo=<YOUR_REPO_URL>
+#   3. Click "Apply". The free web service is created and deployed.
+#
+# After the first successful deploy the server answers on:
+#   https://bleach-fight-server.onrender.com/health   ->  {"ok":true,"rooms":0}
+# WebSocket clients connect to wss://bleach-fight-server.onrender.com/
+#
+# NOTE: `type: web` is Render's web-service type. `webservice` is not a valid
+# value in the Blueprint schema and would fail validation.
+
+services:
+  - type: web # Render web service (free tier)
+    name: bleach-fight-server
+    runtime: node
+    plan: free
+
+    # This package is standalone; build and run from inside `server/`.
+    rootDir: server
+    buildCommand: npm install --no-audit --no-fund && npm run build
+    startCommand: node dist/index.js
+
+    # Render probes this path before routing traffic to a new deploy.
+    healthCheckPath: /health
+
+    # Deploy on every push to the connected branch.
+    autoDeployTrigger: commit
+
+    # Give the process time to close sockets cleanly on redeploy.
+    maxShutdownDelaySeconds: 30
+
+    envVars:
+      # Render picks the Node version from this variable.
+      - key: NODE_VERSION
+        value: 24.19.0
+
+      # PORT is the port Render assigns automatically and is reserved for it.
+      # It is listed here only for documentation: leave the dashboard value
+      # empty. If it is unset (or empty) the server falls back to 8787.
+      - key: PORT
+        sync: false

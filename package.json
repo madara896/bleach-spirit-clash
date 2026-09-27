@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sprites": "python tools/gen_sprites.py",
+    "stage": "python tools/gen_stage.py",
+    "test": "node --experimental-strip-types --import ./tools/ts-register.mjs tools/simtest.ts",
+    "check:render": "python tools/composite_check.py"
   },
   "dependencies": {
     "next": "16.3.6",
